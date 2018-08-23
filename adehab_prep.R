@@ -11,19 +11,21 @@ sum <-summary(traj)
 pb_06810 <- dplyr::filter(ows.land, animal=="pb_06810") #accurately reflects ows.land
 pb_20525 <- dplyr::filter(ows.land, animal=="pb_20525") #needs to be cut
 
-#### Set reference date and NA's 
 
-refda <- parse_date_time(paste(min(ows.land$datetime)), orders = 'ymd HMS', tz = 'US/Alaska') #set reference date 
-traj2 <- setNA(traj,refda,1,units = 'hour')
+traj.df<-ld(traj) #df
+traj.df$year<-as.numeric(format(traj.df$date, "%Y"))
+traj.df$ID_Year<- paste(traj.df$id, traj.df$year, sep="_")
+
+traj2<-as.ltraj(traj.df[,1:2], date=traj.df$date, id=traj.df$id, burst=traj.df$ID_Year)
+
+#refda <- parse_date_time(paste(min(ows.land$datetime)), orders = 'ymd HMS', tz = 'US/Alaska') #set reference date 
+#traj2 <- setNA(traj,refda,1,units = 'hour') ## not necessary yet - look into this later 
 
 
 
-## cut multi-year bursts - NOT WORKING
 
-cut <- function(dt){
-  return(dt>(20*3600*24))
-}
 
-traj3 <- cutltraj(traj2, "cut(dt)", nextr = TRUE)
+
+
 
 
