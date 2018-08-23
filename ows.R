@@ -47,6 +47,21 @@ ows <- select(ows,animal:end.swim)
 
 save(ows, file="ows.RData")
 
+# add 1's to 'all' database for ows entries
+all <- dplyr::select(all, animal:end.swim)
+ows$tt <- paste(ows$animal, ows$datetime)
+all$tt <- paste(all$animal, all$datetime)
+
+tt2 <- ows$tt
+
+all$ows <- ifelse(all$tt %in% tt2,1,0)
+
+test <- dplyr::filter(all, ows==1)
+
+all<- dplyr::select(all, -tt)
+
+save(all, file="all.RData")
+
 ##### Checking against ows_complete_v1.csv #############
 ########################################################
 
