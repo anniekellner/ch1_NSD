@@ -10,3 +10,5 @@ all.RData
 ows_land.RData
 usgs_pbear_gps_ccde16_v20170131.csv
 swim.csv
+ows_land.csv
+pb_traj_df.RData
