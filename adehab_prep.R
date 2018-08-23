@@ -18,6 +18,10 @@ traj.df$ID_Year<- paste(traj.df$id, traj.df$year, sep="_")
 
 traj2<-as.ltraj(traj.df[,1:2], date=traj.df$date, id=traj.df$id, burst=traj.df$ID_Year)
 
+pb.traj.df<-ld(traj2)
+
+save(pb.traj.df, file="pb_traj_df.RData")
+
 #refda <- parse_date_time(paste(min(ows.land$datetime)), orders = 'ymd HMS', tz = 'US/Alaska') #set reference date 
 #traj2 <- setNA(traj,refda,1,units = 'hour') ## not necessary yet - look into this later 
 

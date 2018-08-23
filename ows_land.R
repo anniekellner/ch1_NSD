@@ -19,9 +19,8 @@ all <- cbind(all,X,Y) #bind datasets
 save(all, file="all.RData")
 
 #Filter database 
-
+load("all.RData")
 ows.land<- dplyr::filter(all, land==1 & ows==1)
-ows.land <- dplyr::select(ows.land, animal:gps_lon, datetime)
 ows.land$datetime <- as.POSIXct(ows.land$datetime)
 
 save(ows.land, file="ows_land.RData")
