@@ -1,4 +1,6 @@
 rm(list = ls())
+library(adehabitatLT)
+library(lubridate)
 
 load("ows_land.RData")
 ows.land$datetime <- as.POSIXct(strptime(as.character(ows.land$datetime),"%Y-%m-%d %H:%M:%S", tz="US/Alaska")) 
@@ -22,7 +24,14 @@ pb.traj.df<-ld(traj2)
 
 save(pb.traj.df, file="pb_traj_df.RData")
 
-#refda <- parse_date_time(paste(min(ows.land$datetime)), orders = 'ymd HMS', tz = 'US/Alaska') #set reference date 
+##### Define reference date and setNAs
+library(dplyr)
+
+refda <- parse_date_time(paste(min(ows.land$datetime)), orders = 'ymd HMS', tz = 'US/Alaska') #set reference date 
+sum <- as.data.frame(tapply(pb.traj.df$dt, pb.traj.df$burst, mean, na.rm=T)) #mean dt for each burst
+
+
+
 #traj2 <- setNA(traj,refda,1,units = 'hour') ## not necessary yet - look into this later 
 
 
