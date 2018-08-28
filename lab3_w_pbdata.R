@@ -23,10 +23,8 @@ library(sendmailR)
 library(maptools)
 library(lubridate)
 
-setwd("C:/Users/akell/Desktop/Spring_2018/Research/GIS/Chapter1")
+#setwd("C:/Users/akell/Desktop/Spring_2018/Research/GIS/Chapter1")
 land<- read.csv("Land.csv")
-
-
 
 #set tz to US/Alaska
 
