@@ -33,6 +33,7 @@ four <- subset(pb.traj.df, burst=="pb_20333_2008"| burst=="pb_20586_2009"| burst
 library(adehabitatLT)
 one$burst <- as.factor(one$burst)
 one <- as.ltraj(one, date=one$date, id=one$burst, burst=one$burst)
- 
+two <- as.ltraj(two, date=two$date, id=two$burst, burst=two$burst)
+four <- as.ltraj(four, date=four$date, id=four$burst, burst= four$burst)
   
 
